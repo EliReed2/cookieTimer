@@ -4,7 +4,8 @@ import { Image, Text, View, StyleSheet, Dimensions } from "react-native";
 import CookInstructionsButton from "@/components/CookInstructionsButton";
 import { useState } from "react";
 import IngredientsModal from "@/components/IngredientsModal";
-import InstructionsModal from "@/components/InstructionsModal"
+import InstructionsModal from "@/components/InstructionsModal";
+import BackgroundTimer from "@/components/BackgroundTimer";
 
 const { width, height } = Dimensions.get('window');
 //Image holder
@@ -44,14 +45,13 @@ export default function Index() {
     >
       <Text style={styles.headerText}>Cookie Helper</Text>
       <View style={styles.mainContainer}>
-        <CookInstructionsButton label="ingredients" onPress={onIngredientButton}/>
-        <IngredientsModal isVisible={isIngredientModalVisible} onClose={onIngredientModalClose}></IngredientsModal>
-        <CookInstructionsButton label="instructions" onPress={onInstructionButton}></CookInstructionsButton>
-        <InstructionsModal isVisible={isInstructionModalVisible} onClose={onInstructionModalClose}></InstructionsModal>
-        <View style={styles.timerContainer}>
-          <Image source={TimerBackground} style={styles.timerImage}/>;
+        <View style={styles.buttonWrapper}>
+          <CookInstructionsButton label="ingredients" onPress={onIngredientButton}/>
+          <IngredientsModal isVisible={isIngredientModalVisible} onClose={onIngredientModalClose}></IngredientsModal>
+          <CookInstructionsButton label="instructions" onPress={onInstructionButton}></CookInstructionsButton>
+          <InstructionsModal isVisible={isInstructionModalVisible} onClose={onInstructionModalClose}></InstructionsModal>
         </View>
-        <Image source={NormalCookie} style={{ width: 100, height: 100 }} resizeMode="contain"/>;
+        <BackgroundTimer></BackgroundTimer>
       </View>
     </SafeAreaView>
   );
@@ -64,20 +64,19 @@ const styles = StyleSheet.create({
     height: "75%",
     borderColor: "#EFCDA9",
     borderWidth: 10,
+    alignItems: "center",
   },
   headerText: {
     fontSize: width * 0.035,
     padding: width * 0.035,
     color: "#6B4F4F",
+    fontFamily: "PixelifySans",
   },
-  timerContainer: {
-    justifyContent: "flex-end", // Align content to the bottom
-    alignItems: "center", // Center the image horizontally
-    flex: 1, // Make the container take up all available space
-  },
-  timerImage: {
-    width: "80%",
-    height: undefined, // Maintain aspect ratio
-    aspectRatio: 1, // Optional: Maintain aspect ratio of the image
-  },
+  buttonWrapper: {
+    width: "65%",
+    height: "20%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "flex-end",
+  }
 })
