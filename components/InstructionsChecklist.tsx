@@ -25,7 +25,7 @@ export default function IngredientChecklist() {
             <Text> Instructions: </Text>
             {items.map((item => (
                 <View key={item} style={styles.listingContainer}>
-                    <Checkbox status={selectedItems.includes(item) ? 'checked' : 'unchecked'} onPress={() => handleCheckboxChange(item)}/>
+                    <Checkbox status={selectedItems.includes(item) ? 'checked' : 'unchecked'} onPress={() => handleCheckboxChange(item)} />
                     <Text style={styles.listingText}>{item}</Text>
                 </View>
             )))}

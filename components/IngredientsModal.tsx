@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent black background
   },
   modalContent: {
-    width: '40%', // Adjust width of the modal content
-    height: '90%', // Adjust height of the modal content
+    width: 'auto', // Adjust width of the modal content
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,

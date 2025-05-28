@@ -6,17 +6,23 @@ import { useState } from "react";
 import IngredientsModal from "@/components/IngredientsModal";
 import InstructionsModal from "@/components/InstructionsModal";
 import BackgroundTimer from "@/components/BackgroundTimer";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const { width, height } = Dimensions.get('window');
 //Image holder
 const TimerBackground = require("../assets/images/stars.png");
 const NormalCookie = require('../assets/images/cookie.png');
+
 export default function Index() {
-  //Ingredients Modal Booleam
+  //Determine if app is being run on phone
+  const isPhone = width < 600;
+
+  //Ingredients Modal Boolean
   const [isIngredientModalVisible, setIsIngredientModalVisible] = useState<boolean>(false);
 
-  //Instructions Modal Booleam
+  //Instructions Modal Boolean
   const [isInstructionModalVisible, setIsInstructionModalVisible] = useState<boolean>(false);
+
   //On Ingredients Modal Close Function
   const onIngredientModalClose = () => {
     setIsIngredientModalVisible(false);
@@ -25,6 +31,7 @@ export default function Index() {
   const onIngredientButton = () => {
     setIsIngredientModalVisible(true);
   }
+
   //On Instruction Modal Close Function
   const onInstructionModalClose = () => {
     setIsInstructionModalVisible(false);
@@ -33,6 +40,18 @@ export default function Index() {
   const onInstructionButton = () => {
     setIsInstructionModalVisible(true);
   }
+
+  // Dynamic styles based on isPhone
+  const dynamicStyles = {
+    buttonWrapper: {
+      paddingTop: isPhone ? 15 : 0,
+      width: isPhone ? "100%" : "65%",
+      height: isPhone ? "auto" : "20%",
+      flexDirection: isPhone ? "column" : "row",
+      justifyContent: isPhone ? "center" : "space-around",
+      alignItems: isPhone ? "center" : "flex-end",
+    } as const,
+  };
 
   return (
     <SafeAreaView
@@ -45,13 +64,13 @@ export default function Index() {
     >
       <Text style={styles.headerText}>Cookie Helper</Text>
       <View style={styles.mainContainer}>
-        <View style={styles.buttonWrapper}>
+        <View style={[styles.buttonWrapper, dynamicStyles.buttonWrapper]}>
           <CookInstructionsButton label="ingredients" onPress={onIngredientButton}/>
-          <IngredientsModal isVisible={isIngredientModalVisible} onClose={onIngredientModalClose}></IngredientsModal>
-          <CookInstructionsButton label="instructions" onPress={onInstructionButton}></CookInstructionsButton>
-          <InstructionsModal isVisible={isInstructionModalVisible} onClose={onInstructionModalClose}></InstructionsModal>
+          <IngredientsModal isVisible={isIngredientModalVisible} onClose={onIngredientModalClose} />
+          <CookInstructionsButton label="instructions" onPress={onInstructionButton} />
+          <InstructionsModal isVisible={isInstructionModalVisible} onClose={onInstructionModalClose} />
         </View>
-        <BackgroundTimer></BackgroundTimer>
+        <BackgroundTimer />
       </View>
     </SafeAreaView>
   );
@@ -67,16 +86,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerText: {
-    fontSize: width * 0.035,
+    fontSize: RFValue(20),
     padding: width * 0.035,
     color: "#6B4F4F",
     fontFamily: "PixelifySans",
   },
   buttonWrapper: {
-    width: "65%",
-    height: "20%",
-    flexDirection: "row",
+    // base styles
     justifyContent: "space-around",
     alignItems: "flex-end",
   }
-})
+});

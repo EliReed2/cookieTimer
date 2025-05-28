@@ -38,12 +38,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
   scrollContainer: {
     flexGrow: 1, // Ensures that the ScrollView grows to fit its content
     paddingBottom: 20, // Add extra space at the bottom of the modal for the close button
+    width: "100%",
   },
   modalText: {
     fontSize: 18,
