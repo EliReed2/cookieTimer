@@ -1,4 +1,8 @@
-# Welcome to your Expo app 👋
+# Cookie Timer Expo App
+
+## Description
+
+App that provides user with a list of ingredients and instructions to make cookies and allows users to check their progress in the recipe via checkboxes. Also implements a timer with three different options depedning on what kind of cookies the user desires, Gooey, Normal, or Hard. This App was meant to be a simple starter app to practice react-native, expo, and simple image animation.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
